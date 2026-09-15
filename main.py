@@ -1,36 +1,77 @@
-class student:
-    def __init__(self, name, height=100):
-        self.height = height
+import random
+class Student:
+
+    def __init__(self, name):
         self.name = name
-        #print("Hello, i am {self.name}")
+        self.gladness = 50
+        self.progress = 55
+        self.enegry = 200
+        self.alive = True
 
-    def print(self):
-         print(f"{self.name}:")
-         print("------------------------------------------")
-         print(f"Скількі в мене градусів {self.height}")
+    def study(self):
+        print("I went to hight school")
+        self.enegry -= 5
+        self.progress += 2.5
+        self.gladness -= 2
 
-    def grow(self4):
-        self4.height -= 75
+    def chill(self):
+        print("I went outside with friends")
+        self.gladness += 3
+        self.enegry -= 5
+        self.progress -= 0.5
 
-    def grow(self1):
-        self1.height -= 80
 
-    def grow(self2):
-        self2.height -= 70
+    def sleep(self):
+        print("I went asleep")
+        self.enegry += 5
+        self.gladness += 1
 
-st4 = student("Pivko")
-st4.grow()
-print(st4. height)
-print(st4.name)
+    def eat(self):
+        print("It was deliicious")
+        self.enegry += 2.5
+        self.gladness += 1
+        self.progress -= 0.5
 
-st1 = student("Vodochka", 200)
-st1.grow()
-st1.grow()
-print(st1. height)
-print(st1.name)
+    def is_alive(self):
+        if self.progress <= 0:
+            print("My mind is so mud")
+            self.alive = False
+        if self.gladness <= 0:
+            print("Noone cars about me")
+            self.alive = False
+        if self.progress > 100:
+            print("I becem a master")
+        if self.enegry <= 0:
+            print("pls kill me someone")
+            self.alive = False
 
-st2 = student("Viscarick", 190)
-st2.grow()
-st2.grow()
-print(st2. height)
-print(st2.name)
+
+    def live(self, day):
+        print(f"Day №{day} from live {self.name}")
+        print("-"*30)
+        rnd = random.randint(1,4)
+        if rnd == 1:
+            self.study()
+        elif rnd == 2:
+            self.chill()
+        elif rnd == 3:
+            self.sleep()
+        else:
+            self.eat()
+
+        self.info()
+        self.is_alive()
+        print()
+
+    def info(self):
+        print(f"For to day {self.name} has:")
+        print(f"Happy : {self.gladness}")
+        print(f"IQ {self.progress}")
+        print(f"Enegry {self.enegry}")
+
+
+student = Student("Vodochka")
+day = 1
+while student.alive == True:
+      student.live(day)
+      day += 1
